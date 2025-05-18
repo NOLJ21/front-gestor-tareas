@@ -87,7 +87,7 @@ const Dashboard = () => {
     const handleStatusChange = async (taskId, newStatus) => {
         try {
             await axios.put(
-                `${urlBack}/api/tasks/${taskId}/status`,
+                `${urlBack}/api/tasks/${taskId}`,
                 {status: newStatus},
                 {headers: {Authorization: `Bearer ${token}`}}
             );
@@ -129,7 +129,7 @@ const Dashboard = () => {
     const handleEditSubmit = async () => {
         try {
             await axios.put(
-                `http://${urlBack}/api/tasks/${editingTask.id}`,
+                `${urlBack}/api/tasks/${editingTask.id}`,
                 editForm,
                 {
                     headers: { Authorization: `Bearer ${token}` }
