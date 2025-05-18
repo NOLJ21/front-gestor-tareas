@@ -20,10 +20,11 @@ const TaskList = ({
                 <h5 className="card-title">Filtrar tareas</h5>
                 <div className="row g-3">
                     <div className="col-md-3">
+                        <label className="fw-bold">Buscar por título</label>
                         <input
                             type="text"
                             className="form-control"
-                            placeholder="Buscar por título"
+                            placeholder=""
                             value={searchTitle}
                             onChange={(e) => onTitleChange(e.target.value)}
                         />
