@@ -7,7 +7,7 @@ import NewTaskForm from "../NewTaskForm/NewTaskForm";
 import {toast, ToastContainer} from 'react-toastify';
 
 const Dashboard = () => {
-    const urlBack = '${process.env.REACT_APP_BACKEND_URL}';
+    const urlBack = `${process.env.REACT_APP_API_URL}`;
     const user = JSON.parse(localStorage.getItem('user'));
     const [tasks, setTasks] = useState([]);
     const [statusFilter, setStatusFilter] = useState('');
