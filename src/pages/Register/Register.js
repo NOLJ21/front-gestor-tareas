@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import './Register.css';
 
 const Register = () => {
+    const urlBack = `${process.env.REACT_APP_API_URL}`;
     const navigate = useNavigate();
     const [form, setForm] = useState({ name: '', email: '', password: '' });
     const [error, setError] = useState('');
@@ -16,8 +17,8 @@ const Register = () => {
         e.preventDefault();
         setError('');
         try {
-            await axios.post('http://localhost:5002/api/auth/register', form);
-            navigate('/login');
+            const res = await axios.post(`${urlBack}/api/auth/register`, form);
+            navigate('/');
         } catch (err) {
             const msg = err.response?.data?.message || 'Error en el registro';
             setError(msg);

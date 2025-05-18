@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import './Login.css';
 
 const Login = () => {
+    const urlBack = `${process.env.REACT_APP_API_URL}`;
     const navigate = useNavigate();
     const [form, setForm] = useState({ email: '', password: '' });
     const [error, setError] = useState('');
@@ -16,9 +17,9 @@ const Login = () => {
         e.preventDefault();
         setError('');
         try {
-            const res = await axios.post('http://localhost:5002/api/auth/login', form);
+            const res = await axios.post(`${urlBack}/api/auth/login`, form);
             localStorage.setItem('token', res.data.token);
-            const me = await axios.get('http://localhost:5002/api/auth/me', {
+            const me = await axios.get(`${urlBack}/api/auth/me`, {
                 headers: { Authorization: `Bearer ${res.data.token}` }
             });
             localStorage.setItem('user', JSON.stringify(me.data));
