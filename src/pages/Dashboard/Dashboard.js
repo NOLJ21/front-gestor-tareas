@@ -71,7 +71,7 @@ const Dashboard = () => {
         }
 
         try {
-            await axios.post('http://localhost:5002/api/tasks', newTask, {
+            await axios.post(`${urlBack}/api/tasks`, newTask, {
                 headers: {Authorization: `Bearer ${token}`}
             });
             setNewTask({title: '', description: '', dueDate: ''});
@@ -87,7 +87,7 @@ const Dashboard = () => {
     const handleStatusChange = async (taskId, newStatus) => {
         try {
             await axios.put(
-                `http://localhost:5002/api/tasks/${taskId}`,
+                `${urlBack}/api/tasks/${taskId}/status`,
                 {status: newStatus},
                 {headers: {Authorization: `Bearer ${token}`}}
             );
@@ -105,7 +105,7 @@ const Dashboard = () => {
         if (!confirm) return;
 
         try {
-            await axios.delete(`http://localhost:5002/api/tasks/${taskId}`, {
+            await axios.delete(`${urlBack}/api/tasks/${taskId}`, {
                 headers: {Authorization: `Bearer ${token}`}
             });
             toast.success('Tarea eliminada');
@@ -129,7 +129,7 @@ const Dashboard = () => {
     const handleEditSubmit = async () => {
         try {
             await axios.put(
-                `http://localhost:5002/api/tasks/${editingTask.id}`,
+                `http://${urlBack}/api/tasks/${editingTask.id}`,
                 editForm,
                 {
                     headers: { Authorization: `Bearer ${token}` }
@@ -150,9 +150,9 @@ const Dashboard = () => {
             let url = '';
 
             if (searchTitle.trim() !== '') {
-                url = `http://localhost:5002/api/tasks/by-title?title=${searchTitle}`;
+                url = `${urlBack}/api/tasks/by-title?title=${searchTitle}`;
             } else if (dateRange.startDate && dateRange.endDate) {
-                url = `http://localhost:5002/api/tasks/by-date?startDate=${dateRange.startDate}&endDate=${dateRange.endDate}`;
+                url = `${urlBack}/api/tasks/by-date?startDate=${dateRange.startDate}&endDate=${dateRange.endDate}`;
             }
 
             if (url) {
